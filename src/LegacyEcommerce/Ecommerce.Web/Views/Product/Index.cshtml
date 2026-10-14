@@ -1,0 +1,24 @@
+@model Ecommerce.Core.ViewModels.ProductListViewModel
+@{
+    ViewBag.Title = "Products";
+}
+<h2>Products</h2>
+
+<form id="filter-form" method="get" action="@Url.Action("Filter", "Product")">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="CategoryId" value="@(Model.Filter.CategoryId.HasValue ? Model.Filter.CategoryId.Value.ToString() : "")" />
+    <div class="form-inline" style="margin-bottom:15px;">
+        <input type="number" step="0.01" name="MinPrice" class="form-control" placeholder="Min price" />
+        <input type="number" step="0.01" name="MaxPrice" class="form-control" placeholder="Max price" />
+        <select name="SortBy" class="form-control">
+            <option value="name">Name</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+        </select>
+        <button type="submit" class="btn btn-default">Apply</button>
+    </div>
+</form>
+
+<div id="product-grid">
+    @Html.Partial("_ProductList", Model)
+</div>

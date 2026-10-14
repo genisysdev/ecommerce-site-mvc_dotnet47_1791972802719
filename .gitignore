@@ -1,0 +1,40 @@
+# ============================================================
+#  .gitignore for the Legacy .NET 4.7 MVC eCommerce solution
+# ============================================================
+
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.dll
+*.pdb
+*.exe
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userprefs
+*.cache
+
+# NuGet packages (restored automatically on build - do NOT commit)
+packages/
+*.nupkg
+
+# Local tools (downloaded nuget.exe etc.)
+.tools/
+
+# EF designer temp
+*.edmx.diagram
+
+# Test / coverage (not used here, but safe to ignore)
+[Tt]est[Rr]esults/
+
+# Documentation (internal specs/plans/guides - excluded from the repo)
+docs/
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store

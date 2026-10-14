@@ -1,0 +1,38 @@
+@model System.Collections.Generic.List<Ecommerce.Core.Models.OrderSummary>
+@{
+    ViewBag.Title = "My Orders";
+}
+<h2>My Orders</h2>
+
+@if (!Model.Any())
+{
+    <p>You have no orders yet. <a href="@Url.Action("Index", "Product")">Start shopping</a>.</p>
+}
+else
+{
+    <table id="orders-table" class="table table-striped">
+        <thead>
+            <tr><th>Order #</th><th>Date</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var o in Model)
+            {
+                <tr>
+                    <td>@o.OrderId</td>
+                    <td>@o.CreatedUtc.ToLocalTime().ToString("g")</td>
+                    <td>@o.Total.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/Content/DataTables/css/jquery.dataTables.min.css" />
+}
+@section Scripts {
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () { $('#orders-table').DataTable(); });
+    </script>
+}

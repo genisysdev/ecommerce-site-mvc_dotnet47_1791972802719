@@ -1,0 +1,10 @@
+@model Ecommerce.Core.ViewModels.ConfirmationViewModel
+@{
+    ViewBag.Title = "Order Confirmed";
+}
+<div class="jumbotron">
+    <h1>&#9989; Thank you!</h1>
+    <p class="lead">Your order <strong>#@Model.OrderId</strong> has been placed.</p>
+    <p>Total charged: <strong>@Model.Total.ToString("C")</strong></p>
+    <a class="btn btn-primary" href="@Url.Action("Index", "Product")">Continue shopping</a>
+</div>

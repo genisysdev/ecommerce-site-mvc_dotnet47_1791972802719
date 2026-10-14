@@ -1,0 +1,4 @@
+@model Ecommerce.Core.Models.Cart
+<a href="@Url.Action("Index", "Cart")" class="btn btn-default navbar-btn">
+    &#128722; Cart (@Model.TotalQuantity) - @Model.TotalPrice.ToString("C")
+</a>

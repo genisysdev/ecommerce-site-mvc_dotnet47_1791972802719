@@ -1,0 +1,32 @@
+@model Ecommerce.Core.ViewModels.ShippingViewModel
+@{
+    ViewBag.Title = "Checkout - Shipping";
+}
+<h2>Checkout &mdash; Step 2 of 3: Shipping</h2>
+
+@using (Html.BeginForm("Shipping", "Checkout", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    foreach (var opt in Ecommerce.Core.ViewModels.ShippingViewModel.Options)
+    {
+        <div class="radio">
+            <label>
+                @Html.RadioButtonFor(m => m.ShippingMethod, opt.Key)
+                @opt.Key - @opt.Value.ToString("C")
+            </label>
+        </div>
+    }
+    @Html.ValidationMessageFor(m => m.ShippingMethod, "", new { @class = "text-danger" })
+
+    <div style="margin-top:15px;">
+        <button type="submit" class="btn btn-primary">Continue to Payment</button>
+        <a href="@Url.Action("Address", "Checkout")">&laquo; Back to address</a>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

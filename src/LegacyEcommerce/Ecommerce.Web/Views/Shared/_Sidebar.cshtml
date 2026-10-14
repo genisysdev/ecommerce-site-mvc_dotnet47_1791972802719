@@ -1,0 +1,20 @@
+@model List<Ecommerce.Core.ViewModels.CategoryNode>
+<h4>Categories</h4>
+<ul class="nav nav-pills nav-stacked">
+    <li><a href="@Url.Action("Index", "Product")">All</a></li>
+    @foreach (var node in Model)
+    {
+        <li>
+            <a href="@Url.Action("Index", "Product", new { categoryId = node.Id })">@node.Name</a>
+            @if (node.Children.Any())
+            {
+                <ul>
+                    @foreach (var child in node.Children)
+                    {
+                        <li><a href="@Url.Action("Index", "Product", new { categoryId = child.Id })">@child.Name</a></li>
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>

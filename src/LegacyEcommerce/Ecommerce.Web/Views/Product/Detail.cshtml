@@ -1,0 +1,27 @@
+@model Ecommerce.Core.ViewModels.ProductDetailViewModel
+@{
+    ViewBag.Title = Model.Product.Name;
+}
+<div class="product-detail">
+    <h1>@Model.Product.Name</h1>
+    <p>@Model.Product.Description</p>
+    <div class="gallery">
+        @foreach (var image in Model.Images)
+        {
+            <a data-fancybox="gallery" href="@image.Url">
+                <img src="@image.Url" alt="@Model.Product.Name" style="max-width:150px; margin:5px;" />
+            </a>
+        }
+    </div>
+    <div class="variants" style="margin:15px 0;">
+        @if (Model.Variants.Any())
+        {
+            @Html.DropDownList("SelectedVariantId",
+                new SelectList(Model.Variants, "Id", "Name", Model.SelectedVariantId),
+                new { @class = "form-control" })
+        }
+    </div>
+    <p class="price"><strong>@Model.Product.Price.ToString("C")</strong></p>
+    <button class="add-to-cart-btn btn btn-primary" data-product-id="@Model.Product.Id">Add to Cart</button>
+    <p style="margin-top:15px;"><a href="@Url.Action("Index", "Product")">&laquo; Back to list</a></p>
+</div>

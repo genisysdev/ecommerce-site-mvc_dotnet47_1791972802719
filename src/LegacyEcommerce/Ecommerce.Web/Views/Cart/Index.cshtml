@@ -1,0 +1,16 @@
+@model Ecommerce.Core.Models.Cart
+@{
+    ViewBag.Title = "Your Cart";
+}
+<h2>Your Cart</h2>
+@Html.AntiForgeryToken()
+<div id="cart-table">
+    @Html.Partial("_CartTable", Model)
+</div>
+<p>
+    @if (Model.Items.Any())
+    {
+        <a href="@Url.Action("Address", "Checkout")" class="btn btn-success">Proceed to Checkout</a>
+    }
+    <a href="@Url.Action("Index", "Product")">&laquo; Continue shopping</a>
+</p>

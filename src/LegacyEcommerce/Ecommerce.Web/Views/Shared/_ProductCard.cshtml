@@ -1,0 +1,9 @@
+@model Ecommerce.Core.Models.Product
+<div class="product-card" data-product-id="@Model.Id">
+    <a href="@Url.Action("Detail", "Product", new { id = Model.Id })">
+        <img src="@Model.ThumbnailUrl" alt="@Model.Name" />
+        <h4>@Model.Name</h4>
+    </a>
+    <span class="price">@Model.Price.ToString("C")</span>
+    <button class="add-to-cart-btn btn btn-primary" data-product-id="@Model.Id">Add to Cart</button>
+</div>

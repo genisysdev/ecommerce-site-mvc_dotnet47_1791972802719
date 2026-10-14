@@ -1,0 +1,16 @@
+@model Ecommerce.Core.ViewModels.ProductListViewModel
+<div class="row">
+    @if (!Model.Products.Any())
+    {
+        <p>No products match your filter.</p>
+    }
+    else
+    {
+        foreach (var product in Model.Products)
+        {
+            <div class="col-md-4">
+                @Html.Partial("_ProductCard", product)
+            </div>
+        }
+    }
+</div>
